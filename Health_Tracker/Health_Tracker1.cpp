@@ -67,8 +67,10 @@ int main() {
 
 	while (true)
 	{
-		cout << "Press 1 to take Damage" << '\n';
-		cout << "Press 2 to Heal" << '\n';
+		cout << "1. Take Damage" << '\n';
+		cout << "2.Heal" << '\n';
+		cout << "3. Add Mana";
+		cout << "4. Subtract Mana";
 		cin >> choice;
 		switch (choice) {
 		case 1:
