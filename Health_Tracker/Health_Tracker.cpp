@@ -16,10 +16,12 @@ public:
     int maxMinor;
     int maxModerate;
     int maxSevere;
+    int maxCritical;
     int currMinor{ 0 };
     int currModerate{ 0 };
     int currSevere{ 0 };
     int currCritical{ 0 };
+    int inflictedInjuries{0};
 
     //constructor
 
@@ -37,7 +39,25 @@ public:
     }
 
     int getInjuryPenalty() {};
-    void addInjury(int inflictedInjuries) {};
+
+    //Doesn't set severeity if not at the max
+    void addInjury() {
+        cout << "How many injuries do you take?\n";
+        cin >> inflictedInjuries;
+        if (inflictedInjuries >= maxMinor) {
+            currMinor = maxMinor;
+            currModerate = inflictedInjuries - currMinor;
+        }
+        else if (currModerate >= maxModerate) {
+            currModerate = maxModerate;
+            currSevere = inflictedInjuries - (currModerate + currMinor);
+        }
+        else if (currSevere >= maxSevere) {
+            currSevere = maxSevere;
+            currCritical = inflictedInjuries - (currSevere + currModerate + currMinor);
+        };
+
+    };
 
     void setInjuries(int end) {
         switch (end) {
@@ -45,31 +65,37 @@ public:
             maxMinor = 1;
             maxModerate = 1;
             maxSevere = 0;
+            maxCritical = 0;
             break;
         case 1:
             maxMinor = 1;
             maxModerate = 1;
             maxSevere = 1;
+            maxCritical = 2;
             break;
         case 2:
             maxMinor = 2;
             maxModerate = 1;
             maxSevere = 1;
+            maxCritical = 2;
             break;
         case 3:
             maxMinor = 3;
             maxModerate = 2;
             maxSevere = 1;
+            maxCritical = 2;
             break;
         case 4:
             maxMinor = 4;
             maxModerate = 2;
             maxSevere = 1;
+            maxCritical = 2;
             break;
         case 5:
             maxMinor = 5;
             maxModerate = 3;
             maxSevere = 2;
+            maxCritical = 2;
             break;
         }
     }
@@ -231,12 +257,12 @@ int main() {
         cout << "Current Character: " << players[character_being_affected].name << '\n';
         cout << "Current Health: " << players[character_being_affected].health << '\n';
         cout << "Current Mana: " << players[character_being_affected].mana << '\n' << '\n';
-        cout << "Max Minor Injuries: " << players[character_being_affected].injuries.maxMinor << '\n' << '\n';
         cout << "1. Take Damage" << '\n';
         cout << "2. Heal" << '\n';
         cout << "3. Add Mana" << '\n';
         cout << "4. Subtract Mana" << '\n';
         cout << "5. Check Injuries" << '\n';
+        cout << "6. Add Injury" << '\n';
         cout << "10. Change Player" << '\n' << '\n';
         cin >> choice;
         switch (choice) {
@@ -254,6 +280,10 @@ int main() {
             break;
         case 5:
             players[character_being_affected].injuries.getTotalInjuries();
+            break;
+        case 6: 
+            players[character_being_affected].injuries.addInjury();
+            break;
         case 10:
             cin >> character_name;
             character_being_affected = character_name;
