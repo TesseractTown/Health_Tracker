@@ -2,7 +2,7 @@
 #include <map>
 using namespace std;
 
-//Add Injuries
+
 //default constrrtuctors for initalize playerCharacter?
 
 int damage;
@@ -32,27 +32,32 @@ public:
     //functions
 
     void getTotalInjuries() {
+        cout << "----------------------" << '\n';
         cout << "Minor: " << currMinor << '\n';
         cout << "Moderate: " << currModerate << '\n';
         cout << "Severe: " << currSevere << '\n';
-        cout << "Critical: " << currCritical << '\n';
+        cout << "Critical: " << currCritical << '\n' << '\n';
     }
 
     int getInjuryPenalty() {};
 
-    //Doesn't set severeity if not at the max
+    //Doesn't set severeity if not at the max, only set up the minor injuries rn
     void addInjury() {
+        cout << "----------------------" << '\n';
         cout << "How many injuries do you take?\n";
         cin >> inflictedInjuries;
-        if (inflictedInjuries >= maxMinor) {
+        if (inflictedInjuries <= maxMinor) {
+            currMinor = inflictedInjuries + currMinor;
+        }
+        if (currMinor >= maxMinor) {
             currMinor = maxMinor;
             currModerate = inflictedInjuries - currMinor;
         }
-        else if (currModerate >= maxModerate) {
+        if (currModerate >= maxModerate) {
             currModerate = maxModerate;
             currSevere = inflictedInjuries - (currModerate + currMinor);
         }
-        else if (currSevere >= maxSevere) {
+       if (currSevere >= maxSevere) {
             currSevere = maxSevere;
             currCritical = inflictedInjuries - (currSevere + currModerate + currMinor);
         };
@@ -189,6 +194,7 @@ public:
     //PC functions
 
     void takeDamage() {
+        cout << "----------------------" << '\n';
         cout << "How Much Damage?\n";
         cin >> damage;
         this->health = this->health - damage;
@@ -200,6 +206,7 @@ public:
     }
 
     void Fheal() {
+        cout << "----------------------" << '\n';
         cout << "How much heals you get?\n";
         cin >> heal;
         this->health = this->health + heal;
@@ -207,6 +214,7 @@ public:
     }
 
     void FaddMana() {
+        cout << "----------------------" << '\n';
         cout << "Mana Gained?\n";
         cin >> addMana;
         this->mana = this->addMana + mana;
@@ -216,6 +224,7 @@ public:
     }
 
     void subtractMana() {
+        cout << "----------------------" << '\n';
         cout << "Mana Used?\n";
         cin >> subMana;
         this->mana = this->mana - subMana;
@@ -254,6 +263,7 @@ int main() {
             character_being_affected = character_name;
 
         }
+        cout << "----------------------" << '\n';
         cout << "Current Character: " << players[character_being_affected].name << '\n';
         cout << "Current Health: " << players[character_being_affected].health << '\n';
         cout << "Current Mana: " << players[character_being_affected].mana << '\n' << '\n';
@@ -264,6 +274,7 @@ int main() {
         cout << "5. Check Injuries" << '\n';
         cout << "6. Add Injury" << '\n';
         cout << "10. Change Player" << '\n' << '\n';
+        cout << "----------------------" << '\n';
         cin >> choice;
         switch (choice) {
         case 1:
