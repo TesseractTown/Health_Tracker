@@ -33,9 +33,9 @@ public:
 
     void getTotalInjuries() {
         cout << "----------------------" << '\n';
-        cout << "Minor: " << currMinor << '\n';
-        cout << "Moderate: " << currModerate << '\n';
-        cout << "Severe: " << currSevere << '\n';
+        cout << "Minor: " << currMinor << "|" << maxMinor << '\n';
+        cout << "Moderate: " << currModerate << "|" << maxModerate << '\n';
+        cout << "Severe: " << currSevere << "|" << maxSevere << '\n';
         cout << "Critical: " << currCritical << '\n' << '\n';
     }
 
@@ -46,27 +46,34 @@ public:
         cout << "----------------------" << '\n';
         cout << "How many injuries do you take?\n";
         cin >> inflictedInjuries;
-
+        cout <<"    Minor:" << '\n';
         int injuries_remaining = inflictInjuryOfTier(inflictedInjuries, maxMinor, currMinor);
-        cout <<"Minor: " << currMinor << '\n';
-        cout << injuries_remaining << '\n';
+        cout <<"    Minor: " << currMinor << '\n';
+        cout << "   Remaining:" << injuries_remaining << '\n';
+        
+        cout << "   Moderate:" << '\n';
+        injuries_remaining = inflictInjuryOfTier(injuries_remaining, maxModerate, currModerate);
+        cout << "   Moderate: " << currModerate << '\n';
+        cout << "   Remaining:" << injuries_remaining << '\n';
 
-        injuries_remaining = inflictInjuryOfTier(inflictedInjuries, maxModerate, currModerate);
-        cout << "Moderate: " << currModerate << '\n';
-        cout << injuries_remaining << '\n';
+        cout << "   Severe:" << '\n';
+        injuries_remaining = inflictInjuryOfTier(injuries_remaining, maxSevere, currSevere);
+        cout << "   Severe: " << currSevere << '\n';
+        cout << "   Remaining: " << injuries_remaining << '\n';
 
-        injuries_remaining = inflictInjuryOfTier(inflictedInjuries, maxSevere, currSevere);
-        cout << "Severe: " << currSevere << '\n';
-        cout << injuries_remaining << '\n';
-
+        currCritical = injuries_remaining;
     };
 
     int inflictInjuryOfTier(int inflicted_injuries, int max_injuries, int& curr_num_injuries) {
-        int num_injuries_can_inflict_this_tier = max(0, inflicted_injuries - curr_num_injuries);
+        int injuries_remaining_for_max = max_injuries - curr_num_injuries; // positive
+        int num_injuries_can_inflict_this_tier = min(injuries_remaining_for_max, inflicted_injuries);
+        cout << "       This tier can take: " << num_injuries_can_inflict_this_tier << " out of " << inflicted_injuries << '\n';
 
-        curr_num_injuries = min(max_injuries, num_injuries_can_inflict_this_tier);
+        curr_num_injuries = min(max_injuries, num_injuries_can_inflict_this_tier + curr_num_injuries);
+        cout << "       Curr number is now: " << curr_num_injuries << '\n';
 
-        int injuries_remaining = inflicted_injuries - curr_num_injuries;
+        int injuries_remaining = max(0, inflicted_injuries  - num_injuries_can_inflict_this_tier);
+        cout << "       Injuries remaining: " << injuries_remaining << '\n';
 
         return injuries_remaining;
     }
