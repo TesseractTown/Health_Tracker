@@ -47,14 +47,17 @@ public:
         cout << "How many injuries do you take?\n";
         cin >> inflictedInjuries;
 
+        int& curr_num = currMinor;
         int injuries_remaining = inflictInjuryOfTier(inflictedInjuries, maxMinor, currMinor);
         cout <<"Minor: " << currMinor << '\n';
         cout << injuries_remaining << '\n';
 
+        curr_num = currModerate;
         injuries_remaining = inflictInjuryOfTier(inflictedInjuries, maxModerate, currModerate);
         cout << "Moderate: " << currModerate << '\n';
         cout << injuries_remaining << '\n';
 
+        curr_num = currSevere;
         injuries_remaining = inflictInjuryOfTier(inflictedInjuries, maxSevere, currSevere);
         cout << "Severe: " << currSevere << '\n';
         cout << injuries_remaining << '\n';
