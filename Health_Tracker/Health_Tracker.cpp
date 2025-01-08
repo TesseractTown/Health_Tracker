@@ -67,6 +67,34 @@ public:
         return injuries_remaining;
     }
 
+    void removeInjuryOfTier(int removedInjuries, int& curr_num_injuries){
+         curr_num_injuries =  max( 0, curr_num_injuries - removedInjuries);
+    }
+
+    void removeInjury() {
+        int injurySeverity;
+        int removedInjuries;
+
+        cout << "What tier of Injury?" << '\n';
+        cin >> injurySeverity;
+        cout << "How Many Injuries?" << 'n';
+        cin >> removedInjuries;
+        switch (injurySeverity) {
+            case 1:
+                removeInjuryOfTier(removedInjuries, currMinor);
+                break;
+            case 2:
+                removeInjuryOfTier(removedInjuries, currModerate);
+                break;
+            case 3:
+                removeInjuryOfTier(removedInjuries, currSevere);
+                break;
+            case 4:
+                removeInjuryOfTier(removedInjuries, currCritical);
+                break;
+        }
+    }
+
 
 
     void setInjuries(int end) {
@@ -278,6 +306,7 @@ int main() {
         cout << "4. Subtract Mana" << '\n';
         cout << "5. Check Injuries" << '\n';
         cout << "6. Add Injury" << '\n';
+        cout << "7. Remove Injury" << '\n';
         cout << "10. Change Player" << '\n' << '\n';
         cout << "----------------------" << '\n';
         cin >> choice;
@@ -299,6 +328,9 @@ int main() {
             break;
         case 6: 
             players[character_being_affected].injuries.addInjury();
+            break;
+        case 7:
+            players[character_being_affected].injuries.removeInjury();
             break;
         case 10:
             cin >> character_name;
