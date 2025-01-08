@@ -41,39 +41,28 @@ public:
 
     int getInjuryPenalty() {};
 
-    //Doesn't set severeity if not at the max, only set up the minor injuries rn
+  
     void addInjury() {
         cout << "----------------------" << '\n';
         cout << "How many injuries do you take?\n";
         cin >> inflictedInjuries;
-        cout <<"    Minor:" << '\n';
         int injuries_remaining = inflictInjuryOfTier(inflictedInjuries, maxMinor, currMinor);
-        cout <<"    Minor: " << currMinor << '\n';
-        cout << "   Remaining:" << injuries_remaining << '\n';
-        
-        cout << "   Moderate:" << '\n';
-        injuries_remaining = inflictInjuryOfTier(injuries_remaining, maxModerate, currModerate);
-        cout << "   Moderate: " << currModerate << '\n';
-        cout << "   Remaining:" << injuries_remaining << '\n';
 
-        cout << "   Severe:" << '\n';
+        injuries_remaining = inflictInjuryOfTier(injuries_remaining, maxModerate, currModerate);
+
         injuries_remaining = inflictInjuryOfTier(injuries_remaining, maxSevere, currSevere);
-        cout << "   Severe: " << currSevere << '\n';
-        cout << "   Remaining: " << injuries_remaining << '\n';
 
         currCritical = injuries_remaining;
     };
 
     int inflictInjuryOfTier(int inflicted_injuries, int max_injuries, int& curr_num_injuries) {
         int injuries_remaining_for_max = max_injuries - curr_num_injuries; // positive
+
         int num_injuries_can_inflict_this_tier = min(injuries_remaining_for_max, inflicted_injuries);
-        cout << "       This tier can take: " << num_injuries_can_inflict_this_tier << " out of " << inflicted_injuries << '\n';
 
         curr_num_injuries = min(max_injuries, num_injuries_can_inflict_this_tier + curr_num_injuries);
-        cout << "       Curr number is now: " << curr_num_injuries << '\n';
 
         int injuries_remaining = max(0, inflicted_injuries  - num_injuries_can_inflict_this_tier);
-        cout << "       Injuries remaining: " << injuries_remaining << '\n';
 
         return injuries_remaining;
     }
