@@ -149,6 +149,7 @@ public:
     int subMana;
     int health{ 0 };
     Injuries injuries{Injuries(5)};
+    PlayerThp playerthp;
     string name;
     bool isDead{ false };
 
@@ -282,6 +283,23 @@ public:
         tempHpValue = tempHpValue;
         tempHpMax = tempHpMax;
     }
+
+    void addTempHp() {
+        int tempHpAdded;
+
+        cout << "How much Temp HP do you add?" << '\n';
+            cin >> tempHpAdded;
+
+        tempHpValue = min(tempHpMax, tempHpAdded + tempHpValue);
+    }
+
+    void subtractTempHp() {
+        int tempHpSubtracted;
+        
+        cout << "Subract how much Temp HP?" << '\n';
+        cin >> tempHpSubtracted;
+        tempHpValue = max(0, tempHpValue - tempHpSubtracted);
+    }
 };
 
 
@@ -306,7 +324,7 @@ public:
         cin >> tempHpValue;
         tempHpMax = tempHpValue;
 
-        THP thp = THP(tempHpName, tempHpValue, tempHpMax);
+        THP thp = THP(tempHpName, tempHpValue, tempHpMax); //encapsulates the behaviour/abstarts behaviour
 
         ActiveTempHps[tempHpName] = thp;
 
@@ -352,7 +370,10 @@ int main() {
         cout << "5. Check Injuries" << '\n';
         cout << "6. Add Injury" << '\n';
         cout << "7. Remove Injury" << '\n';
-        cout << "10. Change Player" << '\n' << '\n';
+        cout << "8. Add Temp HP";
+        cout << "9. Subtract Temp HP";
+        cout << "10. Check Temp HP";
+        cout << "99. Change Player" << '\n' << '\n';
         cout << "----------------------" << '\n';
         cin >> choice;
         switch (choice) {
@@ -377,7 +398,15 @@ int main() {
         case 7:
             players[character_being_affected].injuries.removeInjury();
             break;
+        case 8:
+            players[character_being_affected].playerthp.addTempHp();
+            break;
+        case 9:
+            players[character_being_affected].playerthp.subtractTempHp();
+            break;
         case 10:
+            //yada yada
+        case 99:
             cin >> character_name;
             character_being_affected = character_name;
         }
