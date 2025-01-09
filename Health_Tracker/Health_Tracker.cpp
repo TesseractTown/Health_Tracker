@@ -3,9 +3,6 @@
 #include <vector>
 using namespace std;
 
-
-//default constrrtuctors for initalize playerCharacter?
-
 int damage;
 int heal;
 int choice;
@@ -149,7 +146,7 @@ public:
     int subMana;
     int health{ 0 };
     Injuries injuries{Injuries(5)};
-    PlayerThp playerthp;
+    PlayerThp playerthp{};
     string name;
     bool isDead{ false };
 
