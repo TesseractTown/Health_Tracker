@@ -1,5 +1,6 @@
 #include <iostream>
 #include <map>
+#include <vector>
 using namespace std;
 
 
@@ -266,6 +267,50 @@ public:
         cout << '\n' << '\n';
     }
 
+};
+
+class THP {
+
+public:
+
+    string tempHpName;
+    int tempHpValue;
+    int tempHpMax;
+
+    THP(string tempHpName, int tempHpValue, int tempHPMax) {
+        tempHpName = tempHpName;
+        tempHpValue = tempHpValue;
+        tempHpMax = tempHpMax;
+    }
+};
+
+
+class PlayerThp {
+    // kill me
+
+public:
+
+    vector<string> temphpNames;
+    map<string, THP> ActiveTempHps;
+
+    void createTempHPObject() {
+        string tempHpName;
+        int tempHpValue;
+        int tempHpMax;
+
+        cout << "What is the Temp HP objects Name?";
+        cin >> tempHpName;
+        temphpNames.push_back(tempHpName);
+
+        cout << "Max Value?";
+        cin >> tempHpValue;
+        tempHpMax = tempHpValue;
+
+        THP thp = THP(tempHpName, tempHpValue, tempHpMax);
+
+        ActiveTempHps[tempHpName] = thp;
+
+    }
 };
 
 int main() {
