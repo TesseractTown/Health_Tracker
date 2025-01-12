@@ -1,6 +1,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <string>
 using namespace std;
 
 int damage;
@@ -297,15 +298,10 @@ public:
         cin >> tempHpSubtracted;
         tempHpValue = max(0, tempHpValue - tempHpSubtracted);
     }
-
-    void whatTempHp() {
-        //code that lets u choose temp hp here
-    }
 };
 
 
 class PlayerThp {
-    // kill me
 
 public:
 
@@ -329,6 +325,15 @@ public:
 
         ActiveTempHps[tempHpName] = thp;
 
+    }
+
+    void whatTempHp() {
+        string name;
+
+        cout << "What Temp HP are you modifying?";
+        PlayerThp currentTempHp;
+        cin >> name;
+        ActiveTempHps[name] = currentTempHp;
     }
 };
 
@@ -402,7 +407,7 @@ int main() {
             players[character_being_affected].playerthp.createTempHPObject();
             break;
         case 9:
-            players[character_being_affected].THP.whatTempHp();
+            players[character_being_affected].playerthp.whatTempHp();
         case 10:
             //yada yada
         case 99:
