@@ -147,7 +147,6 @@ public:
     int health{ 0 };
     Injuries injuries{Injuries(5)};
     PlayerThp playerthp{};
-    THP thpfunctions(string tempHpName, int tempHpValue, int tempHPMax){};
     string name;
     bool isDead{ false };
 
