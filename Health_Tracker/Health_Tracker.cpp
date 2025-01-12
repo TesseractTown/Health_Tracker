@@ -147,6 +147,7 @@ public:
     int health{ 0 };
     Injuries injuries{Injuries(5)};
     PlayerThp playerthp{};
+    THP thpfunctions(string tempHpName, int tempHpValue, int tempHPMax){};
     string name;
     bool isDead{ false };
 
@@ -297,6 +298,10 @@ public:
         cin >> tempHpSubtracted;
         tempHpValue = max(0, tempHpValue - tempHpSubtracted);
     }
+
+    void whatTempHp() {
+        //code that lets u choose temp hp here
+    }
 };
 
 
@@ -367,9 +372,8 @@ int main() {
         cout << "5. Check Injuries" << '\n';
         cout << "6. Add Injury" << '\n';
         cout << "7. Remove Injury" << '\n';
-        cout << "8. Add Temp HP";
-        cout << "9. Subtract Temp HP";
-        cout << "10. Check Temp HP";
+        cout << "8. Create Temp HP Object" << '\n';
+        cout << "9. Add/Subtract Temp HP" << '\n';
         cout << "99. Change Player" << '\n' << '\n';
         cout << "----------------------" << '\n';
         cin >> choice;
@@ -396,11 +400,10 @@ int main() {
             players[character_being_affected].injuries.removeInjury();
             break;
         case 8:
-            players[character_being_affected].playerthp.addTempHp();
+            players[character_being_affected].playerthp.createTempHPObject();
             break;
         case 9:
-            players[character_being_affected].playerthp.subtractTempHp();
-            break;
+            players[character_being_affected].THP.whatTempHp();
         case 10:
             //yada yada
         case 99:
