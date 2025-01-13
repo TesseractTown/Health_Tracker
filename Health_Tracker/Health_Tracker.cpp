@@ -147,7 +147,6 @@ public:
     int subMana;
     int health{ 0 };
     Injuries injuries{Injuries(5)};
-    PlayerThp playerthp{};
     string name;
     bool isDead{ false };
 
@@ -268,74 +267,7 @@ public:
 
 };
 
-class THP {
 
-public:
-
-    string tempHpName;
-    int tempHpValue;
-    int tempHpMax;
-
-    THP(string tempHpName, int tempHpValue, int tempHPMax) {
-        tempHpName = tempHpName;
-        tempHpValue = tempHpValue;
-        tempHpMax = tempHpMax;
-    }
-
-    void addTempHp() {
-        int tempHpAdded;
-
-        cout << "How much Temp HP do you add?" << '\n';
-            cin >> tempHpAdded;
-
-        tempHpValue = min(tempHpMax, tempHpAdded + tempHpValue);
-    }
-
-    void subtractTempHp() {
-        int tempHpSubtracted;
-        
-        cout << "Subract how much Temp HP?" << '\n';
-        cin >> tempHpSubtracted;
-        tempHpValue = max(0, tempHpValue - tempHpSubtracted);
-    }
-};
-
-
-class PlayerThp {
-
-public:
-
-    vector<string> temphpNames;
-    map<string, THP> ActiveTempHps;
-
-    void createTempHPObject() {
-        string tempHpName;
-        int tempHpValue;
-        int tempHpMax;
-
-        cout << "What is the Temp HP objects Name?";
-        cin >> tempHpName;
-        temphpNames.push_back(tempHpName);
-
-        cout << "Max Value?";
-        cin >> tempHpValue;
-        tempHpMax = tempHpValue;
-
-        THP thp = THP(tempHpName, tempHpValue, tempHpMax); //encapsulates the behaviour/abstarts behaviour
-
-        ActiveTempHps[tempHpName] = thp;
-
-    }
-
-    void whatTempHp() {
-        string name;
-
-        cout << "What Temp HP are you modifying?";
-        PlayerThp currentTempHp;
-        cin >> name;
-        ActiveTempHps[name] = currentTempHp;
-    }
-};
 
 int main() {
 
@@ -376,9 +308,7 @@ int main() {
         cout << "5. Check Injuries" << '\n';
         cout << "6. Add Injury" << '\n';
         cout << "7. Remove Injury" << '\n';
-        cout << "8. Create Temp HP Object" << '\n';
-        cout << "9. Add/Subtract Temp HP" << '\n';
-        cout << "99. Change Player" << '\n' << '\n';
+        cout << "8. Change Player" << '\n' << '\n';
         cout << "----------------------" << '\n';
         cin >> choice;
         switch (choice) {
@@ -402,15 +332,7 @@ int main() {
             break;
         case 7:
             players[character_being_affected].injuries.removeInjury();
-            break;
         case 8:
-            players[character_being_affected].playerthp.createTempHPObject();
-            break;
-        case 9:
-            players[character_being_affected].playerthp.whatTempHp();
-        case 10:
-            //yada yada
-        case 99:
             cin >> character_name;
             character_being_affected = character_name;
         }
