@@ -18,8 +18,17 @@
     <ClCompile Include="Health_Tracker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PlayCharaDef.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Injuriesdef.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PlayerChar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Injuries.h">
       <Filter>Header Files</Filter>
     </ClInclude>

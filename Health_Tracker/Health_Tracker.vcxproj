@@ -128,9 +128,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Health_Tracker.cpp" />
+    <ClCompile Include="Injuriesdef.cpp" />
+    <ClCompile Include="PlayCharaDef.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Injuries.h" />
+    <ClInclude Include="PlayerChar.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
