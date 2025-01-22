@@ -3,34 +3,31 @@
 #include <vector>
 #include <string>
 #include "Injuries.h"
-#include "PlayerChar.h"
+#include "playerCharacter.h"
 using namespace std;
 
 int damage;
 int heal;
 int choice;
-string input;
-
-
 
 int main() {
-
-    string character_being_affected = "dsbahjbdjsh";
+    string input;
+	cout << "Welcome to the Health Tracker!\n";
     map<string, playerCharacter> players;
     while (true) {
         cout << "Create a Character, yes or no?\n";
         cin >> input;
         if (input == "yes") {
-            playerCharacter currentCharacter;
-            currentCharacter.setName();
-            currentCharacter.setHealth();
-            currentCharacter.setMag();
+            playerCharacter currentCharacter = playerCharacter();
             players[currentCharacter.name] = currentCharacter;
-            }
+        }
         else {
             break;
         }
     }
+
+
+    string character_being_affected = "dsbahjbdjsh";
 
     while (true)
     {
