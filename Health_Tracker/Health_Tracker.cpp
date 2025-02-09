@@ -4,7 +4,9 @@
 #include <string>
 #include "Injuries.h"
 #include "playerCharacter.h"
+#include <nlohmann/json.hpp>
 using namespace std;
+using json = nlohmann::json;
 
 int damage;
 int heal;

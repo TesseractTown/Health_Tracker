@@ -132,6 +132,7 @@
     <ClCompile Include="PlayCharaDef.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Health_Tracker\Health_Tracker\json.hpp" />
     <ClInclude Include="Injuries.h" />
     <ClInclude Include="playerCharacter.h" />
   </ItemGroup>
