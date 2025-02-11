@@ -1,9 +1,9 @@
 #pragma once
-
+#include <string>
 
 class playerCharacter {
 public:
-    char* name;
+    std::string name;
     int mag;
     int end;
     int mana;
@@ -16,7 +16,7 @@ public:
 	//Set PC Stats
     playerCharacter();
     void setName();
-    char* getName() { return name; };
+    std::string getName() { return name; };
     void setHealth();
     void setMag();
 	void takeDamage();

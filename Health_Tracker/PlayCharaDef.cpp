@@ -1,6 +1,7 @@
 #include "Injuries.h"
 #include "playerCharacter.h"
 #include <iostream>
+#include <string>
 using namespace std;
 
 playerCharacter::playerCharacter() {
@@ -11,7 +12,7 @@ playerCharacter::playerCharacter() {
 }
 
 void playerCharacter::setName() {
-	char* input_name = new char[100];
+	std::string input_name;
 	cout << "What is your characters name?\n";
 	cin >> input_name;
 	cout << "\n";
@@ -23,7 +24,6 @@ void playerCharacter::setHealth() {
 	cout << "What is END parameter?\n";
 	cin >> end;
 	cout << "\n";
-	end = end;
 	injuries = Injuries(end);
 	switch (end)
 	{

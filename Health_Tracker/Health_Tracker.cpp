@@ -4,7 +4,7 @@
 #include <string>
 #include "Injuries.h"
 #include "playerCharacter.h"
-#include <nlohmann/json.hpp>
+#include "json.hpp" 
 using namespace std;
 using json = nlohmann::json;
 
@@ -15,13 +15,13 @@ int choice;
 int main() {
     string input;
 	cout << "Welcome to the Health Tracker!\n";
-    map<string, playerCharacter> players;
+    map<string, playerCharacter*> players;
     while (true) {
         cout << "Create a Character, yes or no?\n";
         cin >> input;
         if (input == "yes") {
-            playerCharacter currentCharacter = playerCharacter();
-            players[currentCharacter.name] = currentCharacter;
+            playerCharacter *currentCharacter = new playerCharacter();
+            players[currentCharacter->name] = currentCharacter;
         }
         else {
             break;
@@ -41,9 +41,9 @@ int main() {
 
         }
         cout << "----------------------" << '\n';
-        cout << "Current Character: " << players[character_being_affected].name << '\n';
-        cout << "Current Health: " << players[character_being_affected].health << '\n';
-        cout << "Current Mana: " << players[character_being_affected].mana << '\n' << '\n';
+        cout << "Current Character: " << players[character_being_affected]->name << '\n';
+        cout << "Current Health: " << players[character_being_affected]->health << '\n';
+        cout << "Current Mana: " << players[character_being_affected]->mana << '\n' << '\n';
         cout << "1. Take Damage" << '\n';
         cout << "2. Heal" << '\n';
         cout << "3. Add Mana" << '\n';
@@ -56,25 +56,25 @@ int main() {
         cin >> choice;
         switch (choice) {
         case 1:
-            players[character_being_affected].takeDamage();
+            players[character_being_affected]->takeDamage();
             break;
         case 2:
-            players[character_being_affected].Fheal();
+            players[character_being_affected]->Fheal();
             break;
         case 3:
-            players[character_being_affected].FaddMana();
+            players[character_being_affected]->FaddMana();
             break;
         case 4:
-            players[character_being_affected].subtractMana();
+            players[character_being_affected]->subtractMana();
             break;
         case 5:
-            players[character_being_affected].injuries.getTotalInjuries();
+            players[character_being_affected]->injuries.getTotalInjuries();
             break;
         case 6: 
-            players[character_being_affected].injuries.addInjury();
+            players[character_being_affected]->injuries.addInjury();
             break;
         case 7:
-            players[character_being_affected].injuries.removeInjury();
+            players[character_being_affected]->injuries.removeInjury();
         case 8:
             cin >> character_name;
             character_being_affected = character_name;

@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\nlohmann">
+      <UniqueIdentifier>{10778983-13f7-4960-b4fe-4f5306adced0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Health_Tracker.cpp">
@@ -26,11 +29,14 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PlayerChar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Injuries.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="playerCharacter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Health_Tracker\Health_Tracker\json.hpp">
+      <Filter>Header Files\nlohmann</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
